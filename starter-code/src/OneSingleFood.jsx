@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bulma/css/bulma.css';
+// import './OneSingleFood.css'
 
 
 
@@ -27,7 +28,7 @@ export default function OneSingleFood(props){
                         <input
                             className="input"
                             type="number" 
-                            value="1"
+                            defaultValue="1"
                         />
                         </div>
                         <div className="control">
