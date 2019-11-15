@@ -18,8 +18,25 @@ class FoodBox extends React.Component {
             newQuantity: 0,
             showPopup: false,
             newSearch: "",
-            searchValues: props.food
+            searchValues: props.food,
+            foodList: [],
+            
         }
+    }
+
+
+    changeStuff = (food) => {
+        
+        console.log(food)
+
+        let copyFoodList = [...this.state.foodList]
+
+        copyFoodList.push(food);
+
+        this.setState({
+            foodList: copyFoodList
+        })
+
     }
 
 
@@ -30,6 +47,9 @@ class FoodBox extends React.Component {
                     <OneSingleFood
                         key={i}
                         theFood = {eachFood}
+                        changeStuffFromChild = { this.changeStuff }
+                        animal = "horse"
+
                     />
                 </div>
                 )
@@ -57,17 +77,15 @@ class FoodBox extends React.Component {
 
     }
     
-    todayFood () {
+    todayFood = () => {
 
-        return (
+        console.log("yo", this);
+        return this.state.foodList.map(eachThing=> {
+            return(
+                <h2>YO {eachThing.name}</h2>
+                )
+        })
         
-        <div id="single-food">
-        <h2>Today's Food</h2>
-        </div>
-
-        )
-        
-
     }
 
 
@@ -97,7 +115,7 @@ class FoodBox extends React.Component {
 
        
                
-        let filteredFoods = [...this.state.searchValues].filter(eachFood => {
+        let filteredFoods = [...this.props.food].filter(eachFood => {
             return eachFood.name.toLowerCase().includes(e.target.value.toLowerCase())
         })
 
@@ -144,6 +162,7 @@ class FoodBox extends React.Component {
                     {this.displayFood()}
                     </div>               
                     <div className="col-6">
+                    <h2>Today's Food</h2>
                     {this.todayFood()}
                     </div>             
                 </div>

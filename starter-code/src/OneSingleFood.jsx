@@ -6,6 +6,7 @@ import 'bulma/css/bulma.css';
 
 export default function OneSingleFood(props){
 
+    console.log(props.theFood)
     return(
         <div className="box">
                 <article className="media">
@@ -32,7 +33,7 @@ export default function OneSingleFood(props){
                         />
                         </div>
                         <div className="control">
-                        <button className="button is-info">
+                        <button className="button is-info" onClick = {()=>{props.changeStuffFromChild(props.theFood)}}>
                             +
                         </button>
                         </div>
